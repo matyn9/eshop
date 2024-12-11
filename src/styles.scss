@@ -128,3 +128,68 @@ h4, h5 {
   
 
   
+  video {
+    max-width: 100%;
+    height: auto;
+    pointer-events: none;  
+  }
+
+
+  .video-container {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+}
+video {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+.text-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 48px;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 40px 60px;
+    border-radius: 10px;
+}
+
+
+
+
+.dropdown-menu {
+  max-width: 400px; /* Zvýšení šířky dropdown menu */
+  min-width: 350px; /* Minimální šířka pro lepší vzhled */
+  padding: 20px; /* Zvýšení vnitřního odsazení */
+  font-size: 18px; /* Zvýšení velikosti písma */
+}
+
+.dropdown-item .text-container {
+  max-width: calc(100% - 60px); /* Zajistí, že text bude mít místo vedle obrázku */
+  white-space: normal; /* Text se zalomí, pokud je příliš dlouhý */
+}
+
+.dropdown-item h6,
+.dropdown-item p {
+  overflow: hidden; /* Skrytí textu, který přesahuje box */
+  text-overflow: ellipsis; /* Oříznutí textu a zobrazení "..." na konci */
+  white-space: nowrap; /* Ujistí se, že text nebude zalomený, pokud je příliš dlouhý */
+}
+
+.dropdown-item img {
+  max-width: 50px; /* Maximální šířka obrázku */
+  max-height: 50px; /* Maximální výška obrázku */
+}
+
+
+  
+
+@media (max-width: 768px) {
+  .text-overlay {
+      font-size: 25px; 
+      padding: 20px 30px;
+  }
+}

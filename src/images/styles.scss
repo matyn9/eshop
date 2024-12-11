@@ -1,0 +1,130 @@
+// Import all of Bootstrap's CSS
+@import "bootstrap";
+
+
+.dropdown-menu {
+    display: none; 
+    position: absolute;
+    top: 100%; 
+    left: 0;
+    right: 0;
+}
+
+
+.nav-item.dropdown:hover .dropdown-menu {
+    display: block; 
+}
+
+
+.nav-item {
+    position: relative;
+}
+
+
+
+.price {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #007bff; /* Modrá barva pro cenu */
+  }
+  
+  /* Efekt při přejetí myší nad kartičkou */
+  .card:hover {
+    transform: scale(1.05);
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  /* Styly pro text popisu produktu */
+  .card-text {
+    font-size: 0.9rem;
+    color: #555;
+  }
+
+
+
+  /* Styly pro filtr */
+h4, h5 {
+    font-weight: bold;
+    color: #333;
+  }
+  
+  /* Styl pro ceny ve filtru */
+  input[type="range"] {
+    width: 100%;
+  }
+  
+  /* Styl pro cenu u produktů */
+  .price {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #007bff; /* Modrá barva pro cenu */
+  }
+  
+  /* Efekt při přejetí myší nad kartičkou */
+  .card:hover {
+    transform: scale(1.05);
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  /* Styly pro text popisu produktu */
+  .card-text {
+    font-size: 0.9rem;
+    color: #555;
+  }
+
+
+  /* Styly pro cenu */
+.price {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #007bff; /* Modrá barva pro cenu */
+  }
+  
+  /* Styly pro tlačítko "Koupit" */
+  .btn-primary {
+    background-color: #28a745; /* Zelená barva pro tlačítko */
+    border-color: #28a745;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  /* Efekt při přejetí myší na tlačítko */
+  .btn-primary:hover {
+    background-color: #218838; /* Tmavší zelená při najetí */
+    border-color: #1e7e34;
+    transform: scale(1.05); /* Malý efekt zvětšení */
+  }
+  
+  /* Tlačítko "Koupit" pro malé verze (btn-sm) */
+  .btn-sm {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    border-radius: 25px; /* Zaoblené rohy pro tlačítko */
+  }
+  
+  /* Tlačítko se zlepšeným zarovnáním a paddingem */
+  .card-footer .d-flex {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  
+  /* Styly pro efekt při přejetí myší nad kartou produktu */
+  .card:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  /* Styly pro zarovnání textu a tlačítka ve spodní části karty */
+  .card-footer {
+    background-color: #f8f9fa; /* Světle šedé pozadí pro spodní část karty */
+    padding: 10px;
+  }
+  
+  /* Tlačítko "Koupit" u karet ve spodní části */
+  .card-footer .btn {
+    min-width: 100px;
+  }
+
+  
+
+  
