@@ -1,0 +1,437 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SlapshotStore.cz</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.scss">
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-md bg-danger sticky-top border-bottom" data-bs-theme="dark">
+        <div class="container">
+            <a class="navbar-brand d-md-none" href="#">
+                <svg class="bi" width="24" height="24">
+                    <use xlink:href="#slapshotstore"></use>
+                </svg>
+                Slapshot Store
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas"
+                aria-controls="offcanvas" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-end bg-danger" tabindex="-1" id="offcanvas"
+                aria-labelledby="offcanvasLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasLabel">Slapshot Store</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav flex-grow-1 justify-content-between">
+                        <img class="w-25 ms-none" src="images/Snímek_obrazovky_2024-12-11_125613-removebg-preview.png"
+                            alt="">
+                        <li class="nav-item"><a class="nav-link" href="#">
+                                <svg class="bi" width="24" height="24">
+                                    <use xlink:href="#slapshotstore"></use>
+                                </svg>
+                            </a></li>
+
+                        <li class="nav-item"><a class="nav-link m-3 text-dark fs-5" href="index.html">Domů</a></li>
+                        <li class="nav-item"><a class="nav-link m-3 text-dark fs-5" href="#">Hráč</a></li>
+                        <li class="nav-item"><a class="nav-link m-3 text-dark fs-5" href="#">Brankář</a></li>
+                        <li class="nav-item"><a class="nav-link m-3 text-dark fs-5" href="#">Trénink</a></li>
+
+
+                        </a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link m-1" href="#" id="navbarDropdown" role="button" aria-expanded="false">
+                                <i class="bi bi-cart m-2 fs-2 text-dark"></i>
+                            </a>
+
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li>
+                                    <h5 class="ms-3 text-light my-3">Produkt 1</h5>
+                                    <a class="dropdown-item d-flex align-items-center hover-danger" href="#">
+                                        <img src="images/hokejka_hyp2.webp" class="img-fluid me-2" alt="Produkt 1">
+                                        <div class="text-container">
+                                            <h6 class="mb-1">Hokejka VAPOR HYP2RLITE</h6>
+                                            <p class="mb-0 text-muted">7 499Kč</p>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <h5 class="ms-3 text-light my-3">Produkt 2</h5>
+                                    <a class="dropdown-item d-flex align-items-center" href="#">
+                                        <img src="images/brusle_hyperlite2.webp" class="img-fluid me-2" alt="Produkt 2">
+                                        <div class="text-container">
+                                            <h6 class="mb-1">Brusle Bauer Vapor Hyperlite 2 S23 SR</h6>
+                                            <p class="mb-0 text-muted">23 849 Kč</p>
+                                        </div>
+                                    </a>
+                                </li>
+                                <div class="bg-danger py-1 my-1 mx-2 br-2">
+                                    <h6 class="ms-3 text-light my-3 text-dark">Celkem</h6>
+                                    <h5 class="ms-3 text-light my-3 text-dark">31 348 Kč</h5>
+                                </div>
+                            </ul>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+
+    <section>
+
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+
+        <div class="container mt-5">
+            <div class="row">
+                <!-- Product Images -->
+                <div class="col-md-6 mb-4">
+                    <img src="images/hokejka_hyp2.webp" alt="Product" class="img-fluid rounded mb-3 product-image"
+                        id="mainImage">
+                    <div class="d-flex justify-content-around">
+                        <img src="images/hokejka_hyp2.webp" alt="Thumbnail 1" class="thumbnail rounded active"
+                            onclick="changeImage(event, this.src)">
+                        <img src="images/produkt1_fotka1.jpeg" alt="Thumbnail 2" class="thumbnail rounded"
+                            onclick="changeImage(event, this.src)">
+                        <img src="images/produkt1_fotka2.jpeg" alt="Thumbnail 3" class="thumbnail rounded"
+                            onclick="changeImage(event, this.src)">
+                        <img src="images/produkt1_fotka3.jpeg" alt="Thumbnail 4" class="thumbnail rounded"
+                            onclick="changeImage(event, this.src)">
+                    </div>
+                </div>
+
+                <!-- Product Details -->
+                <div class="col-md-6">
+                    <h2 class="mb-3">Hokejka VAPOR HYP2RLITE</h2>
+                    <p class="text-muted mb-4">SKU: WDJ230001</p>
+                    <div class="mb-3">
+                        <span class="h4 me-2">7 499Kč</span>
+                        <span class="text-muted"><s>8 899Kč</s></span>
+                    </div>
+                    <div class="mb-3">
+                        <i class="bi bi-star-fill text-warning"></i>
+                        <i class="bi bi-star-fill text-warning"></i>
+                        <i class="bi bi-star-fill text-warning"></i>
+                        <i class="bi bi-star-fill text-warning"></i>
+                        <i class="bi bi-star-half text-warning"></i>
+                        <span class="ms-2">4.5 (356 recenzí)</span>
+                    </div>
+                    <p class="mb-4">Hokejka Bauer Vapor HyperLite 2 S23 Grip SR je profesionální model řady Vapor a je
+                        novinkou na novou sezónu od značky Bauer.</p>
+                    <div class="mb-4">
+                        <h5>Barva:</h5>
+                        <div class="btn-group" role="group" aria-label="Color selection">
+                            <input type="radio" class="btn-check" name="color" id="black" autocomplete="off" checked>
+                            <label class="btn btn-outline-dark" for="black">Black</label>
+                            <input type="radio" class="btn-check" name="color" id="silver" autocomplete="off">
+                            <label class="btn btn-outline-secondary" for="silver">Silver</label>
+                            <input type="radio" class="btn-check" name="color" id="blue" autocomplete="off">
+                            <label class="btn btn-outline-danger" for="blue">Red</label>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <label for="quantity" class="form-label">Množství:</label>
+                        <input type="number" class="form-control" id="quantity" value="1" min="1" style="width: 80px;">
+                    </div>
+                    <button class="btn btn-danger btn-lg mb-3 me-2">
+                        <i class="bi bi-cart-plus"></i> Přidat do košíku
+                    </button>
+
+                    
+                </div>
+            </div>
+            <section>
+                <div class="container my-5">
+                    <div class="row">
+                        <!-- Product Image -->
+
+                        <!-- Product Details -->
+                        <div class="col-md-6">
+                            <h1 class="product-header mb-5">Popis</h1>
+
+
+                            <div class="product-description">
+                                <h3>Perfektní karbonová hokejka</h3>
+                                <p>Pro začátek bychom tu měli technologii Advanced Carbon Layering zajišťující
+                                    optimální vrstvení karbonu. Ta je nyní na nejvyšším vývojovém stupni (ACL 2.0), díky
+                                    čemuž je hůl o 25 gramů lehčí než její o generaci starší Vapor sestřička – celkově
+                                    váží pouhých 360 gramů. Lehčí hůl přitom – jak známo – přináší rychlejší střely,
+                                    plynulejší rozehrávku – a samozřejmě i více gólů. Nižší váha ale nikterak neubrala
+                                    na kvalitě materiálu, který je stále stejně odolný, takže se v klidu můžete pouštět
+                                    do každého buly nebo souboje o puk.
+
+                                    S ACL 2.0 a karbonem obecně je provázaná i další použitá technologie – Hypercore
+                                    Blade Technology, která zvyšuje tuhost karbonové čepele. Tahle funkce urychluje
+                                    odpal téměř na raketovou rychlost.
+
+
+                                </p>
+                                <h3>Bauer hokejka s lepším prohnutím při střele</h3>
+                                <p>Pokud jde o shaft, ten zase disponuje funkcí XE Taper, která shaftu dodává
+                                    elipsovitý tvar a umožňuje hráči při střele výraznější prohnutí hokejky – a dává mu
+                                    tím pádem i možnost tvrději vystřelit. A také rychleji, konkrétně o 10 % než tomu je
+                                    u staršího modelu. Funkce XE Taper navíc obecně lépe funguje u lehkých hokejek, což
+                                    je přesně tenhle případ. Takže výše zmíněná nižší váha této parádní hole se vám opět
+                                    zúročí.
+
+                                    Hokejka je rovněž o něco delší než její kolegyně z řady Nexus. Pokud jsou tedy
+                                    Nexusky na váš vkus příliš krátké, měla by být hůl Vapor Hyperlite 2 jasnou volbou.
+                                </p>
+                            </div>
+
+
+
+                            <div class="product-specifications">
+                                <h3>Specifikace:</h3>
+                                <table class="table">
+                                    <tr>
+                                        <th>Délka</th>
+                                        <td>157 cm</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Hmotnost</th>
+                                        <td>360 gramů</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Barva</th>
+                                        <td>Černá / Stříbrná / Červená</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Materiál</th>
+                                        <td>karbon</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Záruka</th>
+                                        <td>2 roky</td>
+                                    </tr>
+                                </table>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section>
+                <section class="testimonial py-5 bg-light">
+                    <div class="container">
+                        <h2 class="text-center mb-5">Recenze našich zákazníků</h2>
+                        <div class="row">
+                            <div class="col-md-4 mb-4">
+                                <div class="card">
+                                    <div class="card-body text-center">
+                                        <img src="https://randomuser.me/api/portraits/men/3.jpg"
+                                            class="rounded-circle mb-3" alt="Client Avatar">
+                                        <h5 class="card-title">Jan Dostál</h5>
+                                        <p class="card-text text-muted">Trenér hokejového týmu</p>
+                                        <p class="card-text">Perfektní pro rychlé střely!
+                                            "Používám hokejku Vapor Hyperlite 2 už několik týdnů a miluju, jak je lehká.
+                                            Dává mi to úžasnou rychlost při uvolnění střely. Flex technologie je ideální
+                                            pro rychlé střely, a všiml jsem si obrovského zlepšení v přesnosti střelby.
+                                            Hokejka má také skvělou rovnováhu a cítí se pevně při práci s pukem. Určitě
+                                            doporučuji každému, kdo chce zlepšit rychlost střelby!"</p>
+                                        <div class="text-warning">
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-half"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-4">
+                                <div class="card">
+                                    <div class="card-body text-center">
+                                        <img src="https://randomuser.me/api/portraits/women/43.jpg"
+                                            class="rounded-circle mb-3" alt="Client Avatar">
+                                        <h5 class="card-title">Jana Soukupová</h5>
+                                        <p class="card-text text-muted">Maminka nadějného hokejisty</p>
+                                        <p class="card-text">"Neuvěřitelná síla a přesnost
+                                            "Tohle je rozhodně nejlepší hokejka, jakou jsem kdy měl. Hyperlite 2 nabízí
+                                            perfektní kombinaci síly a přesnosti. Nízký bod ohybu je ideální pro rychlé
+                                            zápěstní a slapshoty, a je neuvěřitelně citlivá. Hokejka je odolná, lehká a
+                                            nabízí skvělý pocit při ovládání puku. Je trochu dražší, ale rozhodně to
+                                            stojí za to, pokud to myslíte se svou hrou vážně."</p>
+                                        <div class="text-warning">
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-4">
+                                <div class="card">
+                                    <div class="card-body text-center">
+                                        <img src="https://randomuser.me/api/portraits/men/43.jpg"
+                                            class="rounded-circle mb-3" alt="Client Avatar">
+                                        <h5 class="card-title">Michal Smejkal </h5>
+                                        <p class="card-text text-muted">Hobby hokejista</p>
+                                        <p class="card-text">Skvělá hokejka, trochu tužší
+                                            "Používám Vapor Hyperlite 2 už několik měsíců a rozhodně zlepšila mou hru.
+                                            Reakce je úžasná, zejména při rychlých střelách. Jediná nevýhoda je, že se
+                                            mi zdá o něco tužší, než jsem očekával. Jinak je to stále solidní hokejka a
+                                            rovnováha je perfektní. Pokud hledáte hokejku, která vám zlepší rychlost
+                                            střelby, tohle je skvělá volba!"</p>
+                                        <div class="text-warning">
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </section>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+            <script>
+                function changeImage(event, src) {
+                    document.getElementById('mainImage').src = src;
+                    document.querySelectorAll('.thumbnail').forEach(thumb => thumb.classList.remove('active'));
+                    event.target.classList.add('active');
+                }
+            </script>
+        </div>
+    </section>
+
+    <div class="container mt-5">
+        <footer class="text-center text-lg-start bg-body-tertiary text-muted">
+
+           
+
+
+
+            <section class="">
+                <div class="container text-center text-md-start mt-5">
+
+                    <div class="row mt-3">
+                        <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                            <h6 class="text-uppercase fw-bold mb-4">
+                                <i class="fas fa-gem me-3"></i>Slapshot Store
+                            </h6>
+                            <p>
+                                Vítejte v našem e-shopu, kde najdete vše pro vaši hokejovou vášeň! Nabízíme široký výběr
+                                profesionálního hokejového vybavení pro hráče všech úrovní – od hokejek a chráničů až po
+                                brusle a
+                                brankářské vybavení. Kvalitní produkty, které vám pomohou dosáhnout maximálního výkonu
+                                na ledě, ať už
+                                jste začátečník nebo zkušený hráč. Připravte se na každý zápas s námi!
+                            </p>
+                        </div>
+
+
+
+                        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+
+                            <h6 class="text-uppercase fw-bold mb-4">
+                                produkty
+                            </h6>
+                            <p>
+                                <a href="#" class="text-reset">Hráč</a>
+                            </p>
+                            <p>
+                                <a href="#" class="text-reset">Brankář</a>
+                            </p>
+                            <p>
+                                <a href="#" class="text-reset">Trénink</a>
+                            </p>
+                            <p>
+                                <a href="#" class="text-reset">Domů</a>
+                            </p>
+                        </div>
+
+
+
+                        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+
+                            <h6 class="text-uppercase fw-bold mb-4">
+                                Podpora
+                            </h6>
+                            <p>
+                                <a href="#" class="text-reset">Ceny</a>
+                            </p>
+                            <p>
+                                <a href="#" class="text-reset">Nastavení</a>
+                            </p>
+                            <p>
+                                <a href="#" class="text-reset">Objednávky</a>
+                            </p>
+                            <p>
+                                <a href="#" class="text-reset">Pomoc</a>
+                            </p>
+                        </div>
+
+                        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+
+                            <h6 class="text-uppercase fw-bold mb-4">Kontakt</h6>
+                            <p><i class="fas fa-home me-3"></i> Pardubice, PCE 53002, CZ</p>
+                            <p>
+                                <i class="fas fa-envelope me-3"></i>
+                                slapshotstore@info.com
+                            </p>
+                            <p><i class="fas fa-phone me-3"></i> +420 777 198 659</p>
+                            <p><i class="fas fa-print me-3"></i> +420 776 749 735</p>
+                        </div>
+
+                    </div>
+
+                </div>
+            </section>
+
+
+
+            <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+                © 2024 Copyright:
+                <a class="text-reset fw-bold" href="https://mdbootstrap.com/">SlapshotStore.com</a>
+            </div>
+
+        </footer>
+
+
+
+
+
+
+    </div>
+    </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+</body>
+
+</html>
