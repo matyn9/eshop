@@ -55,130 +55,289 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Košík</title>
-    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        /* Custom styles for the sections */
-        .nav-link {
-            font-weight: bold;
-            text-transform: uppercase;
+        .navbar-nav {
+            width: 100%;
+            justify-content: space-between;
         }
-        .active-section {
-            color: #007bff; /* Active link color */
+        .navbar-nav .nav-item {
+            flex: 1;
+            text-align: center;
         }
-        .section-content {
-            padding: 20px;
-            background-color: #f8f9fa;
-            margin-top: 20px;
-            border-radius: 5px;
+        /* Styl pro aktivní položku (pozadí bude vybarvené) */
+        .navbar-nav .nav-item.active {
+            background-color: #dc3545; /* Měníme barvu pozadí na modrou */
+            color: white; /* Text bude bílý */
+            border-radius: 4px;
+            padding-bottom: 12px;
+            
+        }
+        /* Skrytí neaktivních sekcí */
+        .section {
+            display: none;
+        }
+        .section.active {
+            display: block;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- Navbar for the top section with links -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container-fluid">
-                <ul class="navbar-nav w-100 d-flex justify-content-between">
-                    <li class="nav-item">
-                        <a class="nav-link active-section" href="#kosik">Košík</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#doprava">Doprava a Platba</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#dodaci-udaje">Dodací údaje</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
 
-        <!-- Košík Section -->
-        <div id="kosik" class="section-content">
-            <h2>Košík</h2>
-            <p>Seznam produktů, které máte v košíku.</p>
-            <!-- Example of a product list -->
-            <ul>
-                <li>Produkt 1 - Cena: 100 Kč</li>
-                <li>Produkt 2 - Cena: 200 Kč</li>
-            </ul>
-            <p><strong>Celková cena: 300 Kč</strong></p>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <ul class="navbar-nav w-100" id="navbarItems">
+            <!-- Košík -->
+            <li class="nav-item" id="kosikItem">
+                <a class="nav-link fs-5" href="#" onclick="showSection('kosik')">Košík</a>
+            </li>
+            <!-- Doprava -->
+            <li class="nav-item" id="dopravaItem">
+                <a class="nav-link fs-5" href="#" onclick="showSection('doprava')"> Platba a Doprava</a>
+            </li>
+            <!-- Dodací údaje -->
+            <li class="nav-item" id="dodaciItem">
+                <a class="nav-link fs-5" href="#" onclick="showSection('dodaci')">Dodací údaje</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container mt-4">
+    <!-- Sekce pro Košík -->
+    <div class="section" id="kosik">
+        <style>
+            .product-img {
+                max-width: 100px;
+            }
+            .total-price {
+                font-size: 1.5em;
+                font-weight: bold;
+            }
+            .remove-item {
+                cursor: pointer;
+                color: red;
+            }
+        </style>
+    </head>
+    <body>
+    
+    
+    
+    <div class="container mt-4">
+        <h2>Košík</h2>
+    
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Produkt</th>
+                        <th scope="col">Cena</th>
+                        <th scope="col">Množství</th>
+                        <th scope="col">Celkem</th>
+                        <th scope="col">Odstranit</th>
+                    </tr>
+                </thead>
+                <tbody id="cartItems">
+                    <tr>
+                        <td>
+                            <img src="images/hokejka_hyp2.webp" alt="Produkt" class="product-img">
+                            Hokejka VAPOR HYP2RLITE
+                        </td>
+                        <td>7499 Kč</td>
+                        <td>
+                            <input type="number" class="form-control" value="1" min="1" onchange="updateTotal()">
+                        </td>
+                        <td class="product-total">7499 Kč</td>
+                        <td><span class="remove-item" onclick="removeItem(this)">X</span></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img src="images/brusle_hyperlite2.webp" alt="Produkt" class="product-img">
+                            Brusle Bauer Vapor Hyperlite 2 S23 SR
+                        </td>
+                        <td>23849 Kč</td>
+                        <td>
+                            <input type="number" class="form-control" value="1" min="1" onchange="updateTotal()">
+                        </td>
+                        <td class="product-total">23849 Kč</td>
+                        <td><span class="remove-item" onclick="removeItem(this)">X</span></td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
-
-        <!-- Doprava and Platba Section -->
-        <div id="doprava" class="section-content">
-            <h2>Doprava a Platba</h2>
-            <p>Vyberte způsob dopravy a platby.</p>
-            <form>
-                <div class="mb-3">
-                    <label for="doprava" class="form-label">Způsob dopravy</label>
-                    <select class="form-select" id="doprava">
-                        <option>Osobní odběr</option>
-                        <option>Doručení na adresu</option>
-                    </select>
-                </div>
-                <div class="mb-3">
-                    <label for="platba" class="form-label">Způsob platby</label>
-                    <select class="form-select" id="platba">
-                        <option>Hotově při převzetí</option>
-                        <option>Platební karta</option>
-                    </select>
-                </div>
-            </form>
-        </div>
-
-        <!-- Dodací údaje Section -->
-        <div id="dodaci-udaje" class="section-content">
-            <h2>Dodací údaje</h2>
-            <form>
-                <div class="mb-3">
-                    <label for="jmeno" class="form-label">Jméno</label>
-                    <input type="text" class="form-control" id="jmeno" placeholder="Vaše jméno">
-                </div>
-                <div class="mb-3">
-                    <label for="adresa" class="form-label">Adresa</label>
-                    <input type="text" class="form-control" id="adresa" placeholder="Ulice, č.p.">
-                </div>
-                <div class="mb-3">
-                    <label for="psc" class="form-label">PSČ</label>
-                    <input type="text" class="form-control" id="psc" placeholder="PSČ">
-                </div>
-                <button type="submit" class="btn btn-primary">Odeslat objednávku</button>
-            </form>
+    
+        <div class="d-flex justify-content-between">
+            <p class="total-price">Celkem: <span id="totalAmount">800 Kč</span></p>
+            <button class="btn btn-danger text-light" onclick="goToCheckout()">Přejít k pokladně</button>
         </div>
     </div>
-
-
-
-
-    <!-- Bootstrap CSS -->
     
-    <style>
-        .section-content {
-            padding: 20px;
-            background-color: #f8f9fa;
-            margin-top: 20px;
-            border-radius: 5px;
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Funkce pro odstranění položky z košíku
+        function removeItem(element) {
+            var row = element.closest('tr');
+            row.remove();
+            updateTotal();
         }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <!-- Košík Section -->
-        <div class="section-content">
-            <h2>Košík</h2>
-            <p>Seznam produktů, které máte v košíku.</p>
-            <ul>
-                <li>Produkt 1 - Cena: 100 Kč</li>
-                <li>Produkt 2 - Cena: 200 Kč</li>
-            </ul>
-            <p><strong>Celková cena: 300 Kč</strong></p>
+    
+        // Funkce pro aktualizaci celkové ceny po změně množství
+        function updateTotal() {
+            let total = 0;
+            const rows = document.querySelectorAll('#cartItems tr');
+            rows.forEach(row => {
+                const price = parseFloat(row.cells[1].innerText.replace(' Kč', ''));
+                const quantity = parseInt(row.querySelector('input').value);
+                const totalPrice = price * quantity;
+                row.querySelector('.product-total').innerText = totalPrice + ' Kč';
+                total += totalPrice;
+            });
+            document.getElementById('totalAmount').innerText = total + ' Kč';
+        }
+    
+        // Funkce pro přechod na stránku pokladny (zde je to pouze příklad)
+        function goToCheckout() {
+            alert('Přejít k pokladně...');
+            // Přesměrování na stránku pokladny (například checkout.html)
+            // window.location.href = 'checkout.html';
+        }
+    
+        // Aktualizace celkové ceny při změně hodnoty
+        updateTotal();
+    </script>
+    </div>
+
+    <!-- Sekce pro Dopravu -->
+    <div class="section" id="doprava">
+        
+    </div>
+
+    <!-- Sekce pro Dodací údaje -->
+    <div class="section" id="dodaci">
+        <h2>Dodací údaje</h2>
+        <p>Formulář pro dodací údaje...</p>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // Funkce pro zobrazení příslušné sekce
+    function showSection(section) {
+        // Skrýt všechny sekce
+        const sections = document.querySelectorAll('.section');
+        sections.forEach(sec => {
+            sec.classList.remove('active');
+        });
+
+        // Skrýt všechny položky v navbaru
+        const navItems = document.querySelectorAll('.nav-item');
+        navItems.forEach(item => {
+            item.classList.remove('active');
+        });
+
+        // Zobrazit vybranou sekci
+        document.getElementById(section).classList.add('active');
+
+        // Zvýraznit aktivní položku v navbaru
+        document.getElementById(section + 'Item').classList.add('active');
+    }
+
+    // Nastavení výchozí sekce při načtení
+    window.onload = () => showSection('kosik');
+</script>
+
+<footer class="text-center text-lg-start bg-body-tertiary text-muted">
+
+       
+
+
+
+    <section class="">
+      <div class="container text-center text-md-start mt-5">
+
+        <div class="row mt-3">
+          <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4 mt-4">
+            <h6 class="text-uppercase fw-bold mb-4">
+              <i class="fas fa-gem me-3 "></i>Slapshot Store
+            </h6>
+            <p>
+              Vítejte v našem e-shopu, kde najdete vše pro vaši hokejovou vášeň! Nabízíme široký výběr
+              profesionálního hokejového vybavení pro hráče všech úrovní – od hokejek a chráničů až po brusle a
+              brankářské vybavení. Kvalitní produkty, které vám pomohou dosáhnout maximálního výkonu na ledě, ať už
+              jste začátečník nebo zkušený hráč. Připravte se na každý zápas s námi!
+            </p>
+          </div>
+
+
+
+          <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+
+            <h6 class="text-uppercase fw-bold mb-4 mt-4">
+              produkty
+            </h6>
+            <p>
+              <a href="#" class="text-reset">Hráč</a>
+            </p>
+            <p>
+              <a href="#" class="text-reset">Brankář</a>
+            </p>
+            <p>
+              <a href="#" class="text-reset">Trénink</a>
+            </p>
+            <p>
+              <a href="#" class="text-reset">Domů</a>
+            </p>
+          </div>
+
+
+
+          <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+
+            <h6 class="text-uppercase fw-bold mb-4 mt-4">
+              Podpora
+            </h6>
+            <p>
+              <a href="#" class="text-reset">Ceny</a>
+            </p>
+            <p>
+              <a href="#" class="text-reset">Nastavení</a>
+            </p>
+            <p>
+              <a href="#" class="text-reset">Objednávky</a>
+            </p>
+            <p>
+              <a href="#" class="text-reset">Pomoc</a>
+            </p>
+          </div>
+
+          <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0">
+
+            <h6 class="text-uppercase fw-bold mb-4 mt-4">Kontakt</h6>
+            <p><i class="fas fa-home me-3"></i> Pardubice, PCE 53002, CZ</p>
+            <p>
+              <i class="fas fa-envelope me-3"></i>
+              slapshotstore@info.com
+            </p>
+            <p><i class="fas fa-phone me-3"></i> +420 777 198 659</p>
+            <p><i class="fas fa-print me-3"></i> +420 776 749 735</p>
+          </div>
+
         </div>
 
-        <!-- Navigation -->
-    
+      </div>
+    </section>
 
-    <!-- Bootstrap JS -->
+
+
+    <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+      © 2024 Copyright:
+      <a class="text-reset fw-bold" href="https://mdbootstrap.com/">SlapshotStore.com</a>
+    </div>
+
+  </footer>
+
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 </body>
