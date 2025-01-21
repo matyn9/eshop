@@ -225,3 +225,54 @@ a{
 
 
 
+.custom-section {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 25px;
+  margin-bottom: 20px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+}
+.custom-section:hover {
+  transform: translateY(-5px);
+}
+.custom-section h2 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+.custom-section p {
+  margin-bottom: 15px;
+  color: #555;
+}
+.custom-section ul {
+  list-style-type: none;
+  padding: 0;
+}
+.custom-section ul li {
+  background: #f8f9fa;
+  padding: 10px 15px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+}
+.custom-section ul li::before {
+  content: '\2022';
+  color: #007bff;
+  font-weight: bold;
+ 
+  width: 20px;
+  margin-right: 10px;
+}
+.custom-section ul li:hover {
+  background: #e9ecef;
+}
+.row .custom-section {
+  margin-bottom: 30px;
+}
+
+
+
+

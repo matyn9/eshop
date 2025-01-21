@@ -84,7 +84,7 @@
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light mt-4">
     <div class="container-fluid">
         <ul class="navbar-nav w-100" id="navbarItems">
             <!-- Košík -->
@@ -168,10 +168,43 @@
         </div>
     
         <div class="d-flex justify-content-between">
-            <p class="total-price">Celkem: <span id="totalAmount">800 Kč</span></p>
+            <p class="total-price">Celkem: <span id="totalAmount">31348 Kč</span></p>
             <button class="btn btn-danger text-light" onclick="goToCheckout()">Přejít k pokladně</button>
         </div>
     </div>
+    <div class="container mt-5">
+      <h2 class="mb-4 text-center">Použijte slevový kód</h2>
+  
+      <!-- Formulář pro zadání slevového kódu -->
+      <div class="card shadow-sm mb-4">
+          <div class="card-body">
+              <h5 class="card-title">Zadejte slevový kód</h5>
+              <form id="discountForm">
+                  <div class="mb-3">
+                    
+                      <input type="text" class="form-control" id="discountCode" placeholder="Zadejte kód" required>
+                  </div>
+                  <button type="submit" class="btn btn-danger">Použít kód</button>
+              </form>
+  
+              <!-- Výsledky aplikace kódu -->
+              <div id="discountResult" class="mt-3" style="display: none;">
+                  <p id="discountMessage" class="text-success"></p>
+                  <p><strong>Celková cena po slevě:</strong> <span id="newTotalPrice"></span> Kč</p>
+              </div>
+          </div>
+      </div>
+  
+      <!-- Celkové shrnutí ceny -->
+      <div class="card shadow-sm">
+          <div class="card-body">
+              
+             
+              <p><h5><strong>Cena po zadání kódu:</strong> </p></h5>
+             
+          </div>
+      </div>
+  </div>
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script>
@@ -210,13 +243,205 @@
 
     <!-- Sekce pro Dopravu -->
     <div class="section" id="doprava">
-        
+      <div class="container mt-5">
+          <div class="text-center mb-4">
+              <h1>Doprava a Platba</h1>
+              <p class="text-muted">Zvolte způsob dopravy a platby, který vám nejvíce vyhovuje.</p>
+          </div>
+          <div class="row d-flex justify-content-between g-4"> <!-- Použití justify-content-between pro mezery -->
+              <!-- Sekce Doprava -->
+              <div class="col-md-6 col-12 custom-section">
+                  <h2>Doprava</h2>
+                  <p>Vyberte způsob dopravy, který vám nejvíce vyhovuje:</p>
+                  <form id="dopravaForm">
+                      <div class="form-check">
+                          <input class="form-check-input" type="radio" name="doprava" id="osobniOdběr" value="Osobní odběr" checked>
+                          <label class="form-check-label" for="osobniOdběr">
+                              Osobní odběr: Zdarma
+                          </label>
+                      </div>
+                      <div class="form-check">
+                          <input class="form-check-input" type="radio" name="doprava" id="kuryrniSluzba" value="Kurýrní služba">
+                          <label class="form-check-label" for="kuryrniSluzba">
+                              Kurýrní služba: 99 Kč
+                          </label>
+                      </div>
+                      <div class="form-check">
+                          <input class="form-check-input" type="radio" name="doprava" id="ceskaPosta" value="Česká pošta">
+                          <label class="form-check-label" for="ceskaPosta">
+                              Česká pošta: 79 Kč
+                          </label>
+                      </div>
+                      <div class="form-check">
+                          <input class="form-check-input" type="radio" name="doprava" id="zasilkovna" value="Zásilkovna">
+                          <label class="form-check-label" for="zasilkovna">
+                              Zásilkovna: 65 Kč
+                          </label>
+                      </div>
+                  </form>
+              </div>
+  
+              <!-- Sekce Platba -->
+              <div class="col-md-6 col-12 custom-section">
+                  <h2>Platba</h2>
+                  <p>Zvolte preferovaný způsob platby:</p>
+                  <form id="platbaForm">
+                      <div class="form-check">
+                          <input class="form-check-input" type="radio" name="platba" id="hotove" value="Hotově" checked>
+                          <label class="form-check-label" for="hotove">
+                              Hotově: Při převzetí
+                          </label>
+                      </div>
+                      <div class="form-check">
+                          <input class="form-check-input" type="radio" name="platba" id="platbaKartou" value="Platba kartou">
+                          <label class="form-check-label" for="platbaKartou">
+                              Platba kartou: Online
+                          </label>
+                      </div>
+                      <div class="form-check">
+                          <input class="form-check-input" type="radio" name="platba" id="bankovniPrevod" value="Bankovní převod">
+                          <label class="form-check-label" for="bankovniPrevod">
+                              Bankovní převod: Do 3 pracovních dnů
+                          </label>
+                      </div>
+                      <div class="form-check">
+                          <input class="form-check-input" type="radio" name="platba" id="paypal" value="PayPal">
+                          <label class="form-check-label" for="paypal">
+                              PayPal: Rychlá online platba
+                          </label>
+                          
+                      </div>
+                  </form>
+              </div>
+          </div>
+          <!-- Tlačítko pro potvrzení výběru -->
+          <div class="text-center mt-4 d-flex justify-content-end">
+              <button class="btn btn-danger " onclick="potvrditVyber()">Potvrdit výběr</button>
+          </div>
+      </div>
+  </div>
+  
+  <!-- JavaScript pro zpracování výběru -->
+  <script>
+      function potvrditVyber() {
+          // Získání vybraných možností
+          const doprava = document.querySelector('input[name="doprava"]:checked').value;
+          const platba = document.querySelector('input[name="platba"]:checked').value;
+          
+          alert(`Vybrali jste: \nDoprava: ${doprava} \nPlatba: ${platba}`);
+      }
+  </script>
+  
+  
+  
+<!-- Tlačítko pro potvrzení výběru -->
+
+</div>
+</div>
+
+<!-- JavaScript pro zpracování výběru -->
+<script>
+function potvrditVyber() {
+// Získání vybraných možností
+const doprava = document.querySelector('input[name="doprava"]:checked').value;
+const platba = document.querySelector('input[name="platba"]:checked').value;
+
+alert(`Vybrali jste: \nDoprava: ${doprava} \nPlatba: ${platba}`);
+}
+</script>
     </div>
 
     <!-- Sekce pro Dodací údaje -->
     <div class="section" id="dodaci">
-        <h2>Dodací údaje</h2>
-        <p>Formulář pro dodací údaje...</p>
+      <div class="container mt-5">
+        <h2 class="mb-4">Dodací údaje</h2>
+        
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title">Adresa dodání</h5>
+                <form action="#" method="post">
+                    <div class="mb-3">
+                        <label for="jmeno" class="form-label">Jméno</label>
+                        <input type="text" class="form-control custom-input" id="jmeno" placeholder="Zadejte jméno">
+                    </div>
+                    <div class="mb-3">
+                      <label for="prijmeni" class="form-label">Přijmení</label>
+                      <input type="text" class="form-control custom-input" id="prijmeni" placeholder="Zadejte přijmení">
+                  </div>
+                    <div class="mb-3">
+                        <label for="adresa" class="form-label">Adresa</label>
+                        <input type="text" class="form-control custom-input" id="adresa" placeholder="Zadejte adresu">
+                    </div>
+                    <div class="mb-3">
+                        <label for="mesto" class="form-label">Město</label>
+                        <input type="text" class="form-control custom-input" id="mesto" placeholder="Zadejte město">
+                    </div>
+                    <div class="mb-3">
+                        <label for="psc" class="form-label">PSČ</label>
+                        <input type="text" class="form-control custom-input" id="psc" placeholder="Zadejte PSČ">
+                    </div>
+                    <div class="mb-3">
+                        <label for="telefon" class="form-label">Telefonní číslo</label>
+                        <input type="tel" class="form-control custom-input" id="telefon" placeholder="Zadejte telefonní číslo">
+                    </div>
+                    <div class="mb-3">
+                      <label for="jmeno" class="form-label">Email</label>
+                      <input type="email" class="form-control custom-input" id="email" placeholder="Zadejte email">
+                  </div>
+                    <div class="mb-3">
+                        <label for="poznamka" class="form-label">Poznámka k doručení</label>
+                        <textarea class="form-control custom-input" id="poznamka" rows="3" placeholder="Napíšete-li nějaké poznámky, například do jaké hodiny můžete být doma."></textarea>
+                    </div>
+                    
+                    
+                </form>
+            </div>
+        </div>
+        <div class="container mt-5">
+          <h2 class="mb-4 text-center">Shrnutí objednávky</h2>
+      
+          <!-- Karta s rekapitulací objednávky -->
+          <div class="card shadow-sm mb-4">
+              <div class="card-body">
+                  <h5 class="card-title">Detaily objednávky</h5>
+                  <p><strong>Jméno zákazníka:</strong> Matyáš Heller</p>
+                  <p><strong>Adresa dodání:</strong> Wolkerova 2221, 45603 Pardubice</p>
+                  <p><strong>Telefon:</strong> +420 777 346 643</p>
+                  <p><strong>Požadavky k doručení:</strong> Rádi bychom doručili 26.1.2025 v čase 8:00-10:00.</p>
+              </div>
+          </div>
+      
+          <!-- Karta s přehledem položek v objednávce -->
+          <div class="card shadow-sm mb-4">
+              <div class="card-body">
+                  <h5 class="card-title">Položky v objednávce</h5>
+                  <ul class="list-group">
+                      <li class="list-group-item">
+                          <strong>Hokejka VAPOR HYP2RLITE</strong> - 1 x <span class="text-muted">Cena: 7499 Kč</span>
+                      </li>
+                      <li class="list-group-item">
+                          <strong>Brusle Bauer Vapor Hyperlite 2 S23 SR</strong> - 1 x <span class="text-muted">Cena: 23849 Kč</span>
+                      </li>
+                  </ul>
+              </div>
+          </div>
+      
+          <!-- Karta s celkovou částkou -->
+          <div class="card shadow-sm">
+              <div class="card-body">
+                  <h5 class="card-title">Celková cena</h5>
+                  <p><strong>Subtotál:</strong> 31 348 Kč</p>
+                  <p><strong>Doprava:</strong> 99 Kč</p>
+                  <p><strong><u>Celková částka k úhradě:</u> 31 447 Kč</strong></p>
+                  <p><strong><u>Cena bez DPH:</u> 24 909 Kč</strong></p>
+              </div>
+          </div>
+      
+          <div class="text-center mt-4 text-center mt-4 d-flex justify-content-end">
+              <button class="btn btn-danger">Dokončit nákup</button>
+          </div>
+      </div>
+    </div>
     </div>
 </div>
 
